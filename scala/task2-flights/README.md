@@ -8,7 +8,7 @@ ___
 
   Let's count the number of the record.
   ```
-  wc -l airline-delays.csv
+  wc -l /root/workshop-spark/data/task2/airline-delays.csv
   ```
   and display first 5 lines of file.
   ```
@@ -44,6 +44,7 @@ ___
   ```
   
   Question 1: Suppose you're in Boston, MA. Which airline has the most flights departing from Boston? 
+  > **HINT**: The solution is quite similar as the previous word-count. Try to focus on filter, map, reduceByKey, sortBy methods.
   ```
   val onlyBoston = rdd.filter(f => f.getAs("OriginCityName") == "Boston, MA")
   val airlinesFromBoston = onlyBoston.map(f => (f.getAs[String]("Carrier"), 1))
