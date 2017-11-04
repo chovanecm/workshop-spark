@@ -4,7 +4,7 @@ You will get a taste of RDD and SQL API during an analyzing a real-world dataset
 ___
 
 #### 1. Look at a data
-  Dataset has two files ```/root/workshop-spark/data/task2``` directory. First HTML file with description of data and ```airline-delays.csv``` file that represents a comma-separated collection of flight records, one record per line.
+  Dataset has two files in ```/root/workshop-spark/data/task2``` directory. First HTML file with description of data and ```airline-delays.csv``` file that represents a comma-separated collection of flight records, one record per line.
 
   Let's count the number of the record.
   ```
