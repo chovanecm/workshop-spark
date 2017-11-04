@@ -1,6 +1,8 @@
 ## task 2: Analyzing Flight Delays
 
 You will get a taste of RDD and SQL API during an analyzing a real-world dataset that represents information about US flight delays in January 2016. You can [download](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236&DB_Short_Name=On-Time) additional datasets.
+
+> **NOTE** Solutions for all questions are already in workshop-spark/scala/task2-flights/src/main/scala/org/workshop/Flights.scala, please don't look at it :-). Try to come up with some solution first.
 ___
 
 #### 1. Look at a data
@@ -43,37 +45,28 @@ ___
   val rdd = flightsDS.rdd
   ```
   
-  Question 1: Suppose you're in Boston, MA. Which airline has the most flights departing from Boston? 
+  Question 1: Suppose you're in 'Boston, MA'. Which airline has the most flights departing from Boston? 
   > **HINT**: The solution is quite similar as the previous word-count. Try to focus on filter, map, reduceByKey, sortBy methods.
   ```
-  val onlyBoston = rdd.filter(f => f.getAs("OriginCityName") == "Boston, MA")
-  val airlinesFromBoston = onlyBoston.map(f => (f.getAs[String]("Carrier"), 1))
-  val airlineWithMostFlights = airlinesFromBoston.reduceByKey(_ + _)
-  val airlineWithMostFlight = airlineWithMostFlights.sortBy(_._2, false).take(1)
+  val onlyFromBoston = ...
+  val airlinesOnlyFromBoston = ...
+  val airlineWithMostFlights = ...
+  val airlineWithMostFlight = ...
   ```
   
   Question 2: Overall, which airline has the worst average delay? How bad was that delay?
+  > **HINT**: The Column ArrDelay can be negative. The negative number means that an airplane came earlier. So you should filter all negative numbers. The tricky part is to count a average :-).
   ```
-  val filteredDelays = rdd.filter(r => !r.isNullAt(r.fieldIndex("ArrDelay")) && r.getAs[String]("ArrDelay").toDouble > 0)
-  val airlines = filteredDelays.map(r => (r.getAs[String]("Carrier"), r.getAs[String]("ArrDelay").toDouble))
-  val worstAirlines = airlines.mapValues(v => (v, 1))
-    .reduceByKey((a, b) => (a._1 + b._1, a._2 + b._2))
-    .mapValues(v => v._1/v._2)
-  val worstAirline = worstAirlines.sortBy(_._2, false).take(1)
+  
   ```
 ___
  
 #### 4. Querying with DataSet
-  We are going to work with [DataSet](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Dataset).
+  Now, We are going to work with [DataSet](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Dataset).
 
-  Question 1: Suppose you're in New York, NY and are contemplating direct flights to San Francisco, CA. In terms of arrival delay, which airline has the best record on that route?
+  Question 1: Suppose you're in 'New York, NY' and you want to take direct flight to San Francisco, CA. In terms of arrival delay, which airline has the best record on that route?
   ```
-  val filteredFlights = flightsDS.filter((col("OriginCityName") === "New York, NY") && (col("DestCityName") === "San Francisco, CA") && (col("ArrDelay") > 0))
-  val airlines = filteredFlights.map(f => (f.getAs[String]("Carrier"), f.getAs[String]("ArrDelay").toDouble))
-  val countedDelay = airlines.groupByKey(_._1)
-    .reduceGroups((a, b) => (a._1, a._2 + b._2))
-    .map(_._2)
-  val airlineWithSmallestDelay = countedDelay.orderBy("_2").take(1)
+  
   ```
  ___
  
@@ -84,9 +77,5 @@ ___
     .createTempView("flights")
   ```
   ```
-  spark.sql("""SELECT DISTINCT OriginCityName, DestCityName, Distance
-    FROM flights
-    WHERE OriginCityName == 'Chicago, IL'
-    ORDER BY Distance
-    DESC LIMIT 1""").collect()
+  spark.sql("""SELECT ... """)
   ```
