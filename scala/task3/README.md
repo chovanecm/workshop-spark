@@ -12,7 +12,7 @@ ___
   ```
   
   Stop and remove all your docker containers
-  > **warning** It will DELETE ALL your docker CONTAINERS. If you don’t want to remove them all, please remove all docker containers that we created during a workshop.
+  > **WARNING** It will DELETE ALL your docker CONTAINERS. If you don’t want to remove them all, please remove all docker containers that we created during a workshop.
   ```
   docker stop $(docker ps -a -q)
   docker rm $(docker ps -a -q)
