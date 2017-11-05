@@ -55,7 +55,7 @@ ___
   ```
   
   Question 2: Overall, which airline has the worst average delay? How bad was that delay?
-  > **HINT**: The Column ArrDelay can be negative. The negative number means that an airplane came earlier. So you should filter all negative numbers. The tricky part is to count a average :-).
+  > **HINT**: The Column ArrDelay can be negative. The negative number means that an airplane came earlier. So you should filter all negative numbers. The tricky part could be to count an average :-).
   ```
   write the solution into spark-shell
   ```
