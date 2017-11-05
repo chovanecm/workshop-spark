@@ -39,6 +39,27 @@ ___
   ```
 ___
  
+ Example from shell:
+ ```
+ flightDS.select("OriginCityName").filter("OriginCityName LIKE '%Boston%'").show(10)
+ +--------------+
+ |OriginCityName|
+ +--------------+
+ |    Boston, MA|
+ |    Boston, MA|
+ |    Boston, MA|
+ |    Boston, MA|
+ |    Boston, MA|
+ |    Boston, MA|
+ |    Boston, MA|
+ |    Boston, MA|
+ |    Boston, MA|
+ |    Boston, MA|
+ +--------------+
+ only showing top 10 rows
+ 
+
+```
 #### 3. Querying with RDD
   Create the [RDD](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.rdd.RDD) with [Row](https://spark.apache.org/docs/2.2.0/api/scala/index.html#org.apache.spark.sql.Row)s.
   ```
@@ -48,11 +69,24 @@ ___
   Question 1: Suppose you're in 'Boston, MA'. Which airline has the most flights departing from Boston? 
   > **HINT**: The solution is quite similar as the previous word-count. Try to focus on filter, map, reduceByKey, sortBy methods.
   ```
-  val onlyFromBoston = ...
-  val airlinesOnlyFromBoston = ...
-  val airlineWithMostFlights = ...
-  val airlineWithMostFlight = ...
+ scala> val flightsFromBoston = ...
+val airlineWithMostFlights = ... map
+  val airlineWithMostFlight = ... reduceByKey 
   ```
+  In Java, there is an interesting problem: It cannot sort the results by value, so the key and value must be swapped :(
+  
+  
+  RDD solution:
+  
+  ```
+  val flightsFromBoston = flightDS.rdd.filter(row => row.getAs("OriginCityName") == "Boston, MA")
+  ```
+  
+  Dataset alternative: 
+
+```
+scala> val flightsFromBoston = flightDS.filter("OriginCityName = 'Boston, MA'")
+```  
   
   Question 2: Overall, which airline has the worst average delay? How bad was that delay?
   > **HINT**: The Column ArrDelay can be negative. The negative number means that an airplane came earlier. So you should filter all negative numbers. The tricky part could be to count an average :-).
@@ -95,3 +129,8 @@ ___
   "/root/workshop-spark/data/task2/output"
   ```
 If you run spark-submit command more than once you can get ```Output directory file:/root/workshop-spark/data/task2/output/airline-with-most-flight already exists```. You have to delete the ouput first.
+
+
+#### 7. Saving to a single file
+
+The result can be saved to a single file using the `coalesce(1)` method.
