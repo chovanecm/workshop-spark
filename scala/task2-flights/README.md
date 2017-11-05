@@ -1,4 +1,4 @@
-## task 2: Analyzing Flight Delays
+## Task 2: Analyzing Flight Delays
 
 You will get a taste of SparkSQL API during an analyzing a real-world dataset that represents information about US flight delays in January 2016. We will use RDD and Dataset which wraps RDD with schema information. You can [download](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236&DB_Short_Name=On-Time) bigger additional datasets.
 
@@ -82,8 +82,8 @@ ___
   ```
 ___
  
-#### 6. Optional built/submit
-  When your solutions return right answers. You can try to write it all into Flights.scala, built and submit it. Then check out your solution in ```/root/workshop-spark/data/task2/output``` directory.
+#### 6. Build/submit/run (optional)
+  When your solutions return right answers. You can try to write it all into Flights.scala, build and submit it. Then check out your solution in ```/root/workshop-spark/data/task2/output``` directory.
   ```
   spark-submit \
   --class org.workshop.Flights \

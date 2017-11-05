@@ -21,7 +21,7 @@ public final class WordCount {
     JavaPairRDD<String, Integer> pairs = words.mapToPair(s -> new Tuple2<>(s, 1));
     JavaPairRDD<String, Integer> freqs = pairs.reduceByKey((i1, i2) -> i1 + i2);
 
-    // sortByValue
+    // sortByValue, bit more comlicated than in scala
     JavaPairRDD<Integer, String> swaped = freqs.mapToPair(pair -> pair.swap());
     JavaPairRDD<Integer, String> sorted = swaped.sortByKey(false);
     JavaPairRDD<String, Integer> top = sorted.mapToPair(pair -> pair.swap());

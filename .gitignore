@@ -14,7 +14,6 @@
 *.jar
 *.war
 *.ear
-*.zip
 *.tar.gz
 *.rar
 
@@ -26,3 +25,4 @@ hs_err_pid*
 metastore_db/
 project/
 target/
+*.iml

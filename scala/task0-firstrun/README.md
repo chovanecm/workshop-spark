@@ -10,9 +10,9 @@ ___
   ```
   Inspect the files in the bin directory. You will soon use ```spark-shell``` to launch your first Spark job. Also note ```spark-submit```, which is used to submit standalone Spark programs to a cluster.
 
-  Inspect the scripts in the sbin directory. These scripts help with setting up a stand-alone Spark cluster, deploying Spark to EC2 virtual machines, and a bunch of additional tasks.
+  Inspect the scripts in the sbin directory. These scripts help with setting up a standalone Spark cluster, deploying Spark to EC2 virtual machines, and a bunch of additional tasks.
 
-  Finally, take a look at the examples directory. You can find a number of stand-alone demo programs here, covering a variety of Spark APIs.
+  Finally, take a look at the examples directory. You can find a number of standalone demo programs here, covering a variety of Spark APIs.
 ___
 
 #### 2. Spark REPL

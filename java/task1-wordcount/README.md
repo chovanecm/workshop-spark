@@ -1,6 +1,7 @@
 ## Task 1: Word Count
 
 You will get familiar with Spark and run your first Spark job.
+> **NOTE** Solution is already in WordCount.java file, please don't look at it :-). Try to come up with your solution first. We can check it later.
 ___
 
 #### 1. Check data
@@ -20,7 +21,7 @@ ___
 ___
 
 #### 3. Implementing the Word Count
-  Your task is to implement the actual word-count program. Print the top 10 most frequent words in the provided books. Create solution in prepared template ```java/task1-worldcount/src/main/java/org/workshop/WordCount.java``` and then build the package.
+  Your task is to implement the actual word-count program. Print the top 10 most frequent words in the provided books. Create solution to the spark-shell. When it will work you can try to copy-paste it to ```java/task1-worldcount/src/main/java/org/workshop/WordCount.java``` and then build the jar by the command
   ```
   mvn package
   ```
@@ -34,10 +35,7 @@ ___
   target/word-count-1.0.jar \
   "/root/workshop-spark/data/task1/*.txt"
   ```
-  
-  We don't really care about words like "the", "a", and "of". Ideally, we would have a list of stop words to ignore. For now, modify your solution to filter out words shorter than 4 characters.
 ___
 
 #### 4. Discussion
-
-Instead of using ```reduceByKey```, you could have used a method called ```countByValue```. Read [its documentation](https://spark.apache.org/docs/2.0.1/api/scala/index.html#org.apache.spark.rdd.RDD), and try to understand how it works. Would using it be a good idea?
+You could use ```reduceByKey``` but also the method ```countByValue```. Read [its documentation](https://spark.apache.org/docs/2.0.1/api/scala/index.html#org.apache.spark.rdd.RDD), and try to understand how it works. Which method is better to use and why?

@@ -4,13 +4,15 @@ ___
 
 #### 1. Set environment
   Install docker-compose
-    * https://docs.docker.com/compose/install/#install-compose
+  * https://docs.docker.com/compose/install/#install-compose
+  
   Those who has installed 'docker for windows' or 'docker for mac' already have docker-compose. Check that:
   ```
   docker-compose -version
   ```
   
-  Stop and remove all your docker containers (warning: it will delete all your docker containers. If you don’t want to remove them all, please remove all docker containers that we created during a workshop)
+  Stop and remove all your docker containers
+  > **WARNING** It will DELETE ALL your docker CONTAINERS. If you don’t want to remove them all, please remove all docker containers that we created during a workshop.
   ```
   docker stop $(docker ps -a -q)
   docker rm $(docker ps -a -q)
@@ -37,7 +39,7 @@ ___
   --supervise \
   --executor-memory 1G \
   --total-executor-cores 4 \
-  /root/workshop-spark/java/task1-wordcount/target/scala-2.11/word-count_2.11-1.0.jar \
+  /root/workshop-spark/java/task1-wordcount/target/word-count-1.0.jar \
   "/root/workshop-spark/data/task1/*.txt"
   ```
 ___
@@ -51,6 +53,7 @@ ___
   --supervise \
   --executor-memory 1G \
   --total-executor-cores 4 \
-  /root/workshop-spark/java/task1-wordcount/target/scala-2.11/scala-2.11/flights_2.11-1.0.jar \
+  /root/workshop-spark/java/task1-wordcount/target/target/flights-1.0.jar \
   "/root/workshop-spark/data/task2/airline-delays.csv"
+  "/root/workshop-spark/data/task2/output"
   ```

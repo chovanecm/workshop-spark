@@ -49,9 +49,11 @@ ___
   spark-submit \
   --class org.workshop.Flights \
   --master spark://spark:7077 \
+  --deploy-mode cluster \
+  --supervise \
   --executor-memory 1G \
   --total-executor-cores 4 \
-  target/scala-2.11/flights_2.11-1.0.jar \
-  /root/workshop-spark/data/task2/airline-delays.csv \
-  /root/workshop-spark/data/task2/output
+  /root/workshop-spark/scala/task1-wordcount/target/scala-2.11/flights_2.11-1.0.jar \
+  "/root/workshop-spark/data/task2/airline-delays.csv" \
+  "/root/workshop-spark/data/task2/output"
   ```

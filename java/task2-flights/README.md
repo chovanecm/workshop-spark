@@ -1,14 +1,16 @@
-## task 2: Analyzing Flight Delays
+## Task 2: Analyzing Flight Delays
 
-You will get a taste of RDD and SQL API during an analyzing a real-world dataset that represents information about US flight delays in January 2016. You can [download](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236&DB_Short_Name=On-Time) additional datasets.
+You will get a taste of SparkSQL API during an analyzing a real-world dataset that represents information about US flight delays in January 2016. We will use RDD and Dataset which wraps RDD with schema information. You can [download](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236&DB_Short_Name=On-Time) bigger additional datasets.
+
+> **NOTE** Solutions for all questions are already in Flights.java file, please don't look at it :-). Try to come up with your solution first. We can check it later.
 ___
 
 #### 1. Look at a data
-  Dataset has two files ```/root/workshop-spark/data/task2``` directory. First HTML file with description of data and ```airline-delays.csv``` file that represents a comma-separated collection of flight records, one record per line.
+  Dataset has two files in ```/root/workshop-spark/data/task2``` directory. First HTML file with description of data and ```airline-delays.csv``` file that represents a comma-separated collection of flight records, one record per line.
 
   Let's count the number of the record.
   ```
-  wc -l airline-delays.csv
+  wc -l /root/workshop-spark/data/task2/airline-delays.csv
   ```
   and display first 5 lines of file.
   ```
@@ -25,46 +27,71 @@ ___
 #### 2. Parsing the CSV
   Next, create an DataSet based on the ```airline-delays.csv``` file.
   ```
-  val flightsDS = spark.read()
-    ???
+  val flightsDS = spark.read
+    .format("csv")
+    .option("header", "true")
+    .option("mode", "DROPMALFORMED")
+    .load("file:///root/workshop-spark/data/task2/airline-delays.csv")
   ```
   You can check the schema by printing it:
   ```
-  flightsDS.printSchema()
+  flightsDS.printSchema
   ```
 ___
  
 #### 3. Querying with RDD
   Create the [RDD](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.rdd.RDD) with [Row](https://spark.apache.org/docs/2.2.0/api/scala/index.html#org.apache.spark.sql.Row)s.
   ```
+  val rdd = flightsDS.rdd
+  ```
   
+  Question 1: Suppose you're in 'Boston, MA'. Which airline has the most flights departing from Boston? 
+  > **HINT**: The solution is quite similar as the previous word-count. Try to focus on filter, map, reduceByKey, sortBy methods.
   ```
-  Question 1: Suppose you're in Boston, MA. Which airline has the most flights departing from Boston? 
-  ```
-  val onlyBoston = 
+  val onlyFromBoston = ...
+  val airlinesOnlyFromBoston = ...
+  val airlineWithMostFlights = ...
+  val airlineWithMostFlight = ...
   ```
   
   Question 2: Overall, which airline has the worst average delay? How bad was that delay?
+  > **HINT**: The Column ArrDelay can be negative. The negative number means that an airplane came earlier. So you should filter all negative numbers. The tricky part could be to count an average :-).
   ```
-  val filteredDelays = 
+  write the solution into spark-shell
   ```
+___
+ 
 #### 4. Querying with DataSet
-  We are going to work with [DataSet](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Dataset).
+  Now, We are going to work with [DataSet](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Dataset).
 
-  Question 1: Suppose you're in New York, NY and are contemplating direct flights to San Francisco, CA. In terms of arrival delay, which airline has the best record on that route?
+  Question 1: Suppose you're in 'New York, NY' and you want to take direct flight to San Francisco, CA. In terms of arrival delay, which airline has the best record on that route?
   ```
-  val filteredFlights = 
+  write the solution into the spark-shell
   ```
- ___
+___
  
 #### 5. Querying with ordinary SQL
   Question 1: Living in Chicago, IL, what are the farthest 10 destinations that you could fly to? (Note that our dataset contains only US domestic flights.)
+  Creation of temporary table ```flights```
   ```
-  flightsDS.withColumn(
+  flightsDS.withColumn("Distance", $"Distance".cast(org.apache.spark.sql.types.DoubleType))
+      .createOrReplaceTempView("flights")
   ```
   ```
-  spark.sql("""
+  spark.sql("""SELECT ... """)
   ```
-
-  
+___
  
+#### 6. Build/submit/run (optional)
+  When your solutions return right answers. You can try to write it all into Flights.java, build and submit it. Then check out your solution in ```/root/workshop-spark/data/task2/output``` directory.
+  ```
+  spark-submit \
+  --class org.workshop.Flights \
+  --master spark://spark:7077 \
+  --executor-memory 1G \
+  --total-executor-cores 4 \
+  target/flights-1.0.jar \
+  "/root/workshop-spark/data/task2/airline-delays.csv" \
+  "/root/workshop-spark/data/task2/output"
+  ```
+If you run spark-submit command more than once you can get ```Output directory file:/root/workshop-spark/data/task2/output/airline-with-most-flight already exists```. You have to delete the ouput first.

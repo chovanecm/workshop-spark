@@ -21,7 +21,7 @@ ___
 ___
 
 #### 3. Implementing the Word Count
-  Your task is to implement the actual word-count program. Print the top 10 most frequent words in the provided books. Create solution to the spark-shell. When it will work you can try to copy-paste it to ```scala/task1-worldcount/src/main/scala/org/workshop/WordCount.scala``` and then build the jar.
+  Your task is to implement the actual word-count program. Print the top 10 most frequent words in the provided books. Create solution to the spark-shell. When it will work you can try to copy-paste it to ```scala/task1-worldcount/src/main/scala/org/workshop/WordCount.scala``` and then build the jar by the command
   ```
   sbt package
   ```
