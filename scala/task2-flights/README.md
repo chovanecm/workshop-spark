@@ -72,9 +72,10 @@ ___
  
 #### 5. Querying with ordinary SQL
   Question 1: Living in Chicago, IL, what are the farthest 10 destinations that you could fly to? (Note that our dataset contains only US domestic flights.)
+  Creation of temporary table ```flights```
   ```
   flightsDS.withColumn("Distance", $"Distance".cast(org.apache.spark.sql.types.DoubleType))
-    .createTempView("flights")
+      .createOrReplaceTempView("flights")
   ```
   ```
   spark.sql("""SELECT ... """)
