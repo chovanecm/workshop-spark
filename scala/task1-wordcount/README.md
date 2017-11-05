@@ -1,6 +1,7 @@
 ## Task 1: Word Count
 
 You will get familiar with Spark and run your first Spark job.
+> **NOTE** Solution is already in WordCount.scala file, please don't look at it :-). Try to come up with your solution first. We can check it later.
 ___
 
 #### 1. Check data
