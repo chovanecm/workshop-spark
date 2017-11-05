@@ -1,6 +1,6 @@
 ## Task 0: The First Run of Spark
 
-You will see the main part of the Spark APi and run the first job. 
+You will have brief look at Spark API and run the first job. 
 ___
 
 #### 1. Briefly look at the Spark directory
