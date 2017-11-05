@@ -82,7 +82,7 @@ ___
   ```
 ___
  
-#### Optional
+#### 6. Optional
   When your solutions return right answers. You can try to write it all into Flights.scala, built and submit it. Then check out your solution in ```/root/workshop-spark/data/task2/output``` directory.
   ```
   spark-submit \
