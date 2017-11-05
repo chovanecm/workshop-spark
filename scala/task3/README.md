@@ -4,7 +4,8 @@ ___
 
 #### 1. Set environment
   Install docker-compose
-    * https://docs.docker.com/compose/install/#install-compose
+  * https://docs.docker.com/compose/install/#install-compose
+  
   Those who has installed 'docker for windows' or 'docker for mac' already have docker-compose. Check that:
   ```
   docker-compose -version
@@ -39,18 +40,17 @@ ___
   --total-executor-cores 4 \
   /root/workshop-spark/scala/task1-wordcount/target/scala-2.11/word-count_2.11-1.0.jar \
   "/root/workshop-spark/data/task1/*.txt"
-```
+  ```
 ___
 
 #### 3. Submit the flights job
   ```
-spark-submit \
+  spark-submit \
   --class org.workshop.Flights \
-  --master spark://master:7077 \
-  --deploy-mode cluster \
-  --supervise \
+  --master spark://spark:7077 \
   --executor-memory 1G \
   --total-executor-cores 4 \
-  /root/workshop-spark/scala/task2-flights/target/scala-2.11/flights_2.11-1.0.jar \
-  "/root/workshop-spark/data/task2/*.csv"
+  target/scala-2.11/flights_2.11-1.0.jar \
+  /root/workshop-spark/data/task2/airline-delays.csv \
+  /root/workshop-spark/data/task2/output
   ```
