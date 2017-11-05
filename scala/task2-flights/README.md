@@ -68,7 +68,7 @@ ___
   ```
   write the solution into the spark-shell
   ```
- ___
+___
  
 #### 5. Querying with ordinary SQL
   Question 1: Living in Chicago, IL, what are the farthest 10 destinations that you could fly to? (Note that our dataset contains only US domestic flights.)
@@ -80,3 +80,18 @@ ___
   ```
   spark.sql("""SELECT ... """)
   ```
+___
+ 
+#### Optional
+  When your solutions return right answers. You can try to write it all into Flights.scala, built and submit it. Then check out your solution in ```/root/workshop-spark/data/task2/output``` directory.
+  ```
+  spark-submit \
+  --class org.workshop.Flights \
+  --master spark://spark:7077 \
+  --executor-memory 1G \
+  --total-executor-cores 4 \
+  target/scala-2.11/flights_2.11-1.0.jar \
+  /root/workshop-spark/data/task2/airline-delays.csv \
+  /root/workshop-spark/data/task2/output
+  ```
+If you run spark-submit command more than once you can get ```Output directory file:/root/workshop-spark/data/task2/output/airline-with-most-flight already exists```. You have to delete the ouput first.
