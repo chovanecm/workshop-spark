@@ -6,7 +6,7 @@ You will get a taste of SparkSQL API during an analyzing a real-world dataset th
 ___
 
 #### 1. Look at a data
-  Dataset has two files in ```/root/workshop-spark/data/task2``` directory. First HTML file with description of data and ```airline-delays.csv``` file that represents a comma-separated collection of flight records, one record per line.
+  Dataset has two files in ```/root/workshop-spark/data/task2``` directory. First HTML file with description of data and the second one is archive file ```airline-delays.csv.zip```. When you unzip to same directory you will get ```airline-delays.csv``` file that represents a comma-separated collection of flight records, one record per line.
 
   Let's count the number of the record.
   ```
