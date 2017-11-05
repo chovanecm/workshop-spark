@@ -2,7 +2,7 @@
 
 You will get a taste of SparkSQL API during an analyzing a real-world dataset that represents information about US flight delays in January 2016. We will use RDD and Dataset which wraps RDD with schema information. You can [download](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236&DB_Short_Name=On-Time) bigger additional datasets.
 
-> **NOTE** Solutions for all questions are already in workshop-spark/scala/task2-flights/src/main/scala/org/workshop/Flights.scala, please don't look at it :-). Try to come up with some solution first.
+> **NOTE** Solutions for all questions are already in Flights.scala file, please don't look at it :-). Try to come up with your solution first. We can check it later.
 ___
 
 #### 1. Look at a data
