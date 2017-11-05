@@ -57,7 +57,7 @@ ___
   Question 2: Overall, which airline has the worst average delay? How bad was that delay?
   > **HINT**: The Column ArrDelay can be negative. The negative number means that an airplane came earlier. So you should filter all negative numbers. The tricky part is to count a average :-).
   ```
-  
+  write the solution into spark-shell
   ```
 ___
  
@@ -66,7 +66,7 @@ ___
 
   Question 1: Suppose you're in 'New York, NY' and you want to take direct flight to San Francisco, CA. In terms of arrival delay, which airline has the best record on that route?
   ```
-  
+  write the solution into the spark-shell
   ```
  ___
  
