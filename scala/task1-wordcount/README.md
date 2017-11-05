@@ -21,11 +21,11 @@ ___
 ___
 
 #### 3. Implementing the Word Count
-  Your task is to implement the actual word-count program. Print the top 10 most frequent words in the provided books. Create solution in prepared template ```scala/task1-worldcount/src/main/scala/org/workshop/WordCount.scala``` and then build the package.
+  Your task is to implement the actual word-count program. Print the top 10 most frequent words in the provided books. Create solution to the spark-shell. When it will work you can try to copy-paste it to ```scala/task1-worldcount/src/main/scala/org/workshop/WordCount.scala``` and then build the jar.
   ```
   sbt package
   ```
-  SBT wil create the jar in ```target/scala-2.11/word-count_2.11-1.0.jar```. When you have your jar you then you can [submit](https://spark.apache.org/docs/latest/submitting-applications.html#launching-applications-with-spark-submit) the job to spark cluster.
+  SBT wil create the jar in ```target/scala-2.11/word-count_2.11-1.0.jar```. When you have your jar then you can [submit](https://spark.apache.org/docs/latest/submitting-applications.html#launching-applications-with-spark-submit) the job to spark cluster.
   ```
   spark-submit \
   --class org.workshop.WordCount \
@@ -35,10 +35,8 @@ ___
   target/scala-2.11/word-count_2.11-1.0.jar \
   "/root/workshop-spark/data/task1/*.txt"
   ```
-  
-  We don't really care about words like "the", "a", and "of". Ideally, we would have a list of stop words to ignore. For now, modify your solution to filter out words shorter than 4 characters.
 ___
 
 #### 4. Discussion
 
-Instead of using ```reduceByKey```, you could have used a method called ```countByValue```. Read [its documentation](https://spark.apache.org/docs/2.0.1/api/scala/index.html#org.apache.spark.rdd.RDD), and try to understand how it works. Would using it be a good idea?
+You could use ```reduceByKey``` but also the method ```countByValue```. Read [its documentation](https://spark.apache.org/docs/2.0.1/api/scala/index.html#org.apache.spark.rdd.RDD), and try to understand how it works. Which method is better to use and why?
